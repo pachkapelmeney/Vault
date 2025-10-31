@@ -22,9 +22,14 @@ pub struct Initialize<'info> {
     pub system_program: Program<'info, System>,
 }
 
-pub fn handler(ctx: Context<Initialize>) -> Result<()> {
-    
+pub fn handler(ctx: Context<Initialize>, init_bump: InitializeBumps) -> Result<()> {
+    let vault_state = &mut ctx.accounts.vault_state;
+    vault_state.amount = 0;
+    vault_state.authority = *ctx.accounts.user.key;
+    vault_state.state_bump = init_bump.vault;
+    vault_state.state_bump = init_bump.vault_state;
 
+    let vault = &mut 
 
     msg!("Greetings from: {:?}", ctx.program_id);
     Ok(())

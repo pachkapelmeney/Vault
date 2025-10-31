@@ -8,6 +8,9 @@ pub struct VaultState {
     pub vault_bump: u8,
     pub state_bump: u8,
 
+    pub authority: Pubkey,
+    pub amount: u32,
+    pub mint: Pubkey,
 }
 
 // impl Space for VaultState {
