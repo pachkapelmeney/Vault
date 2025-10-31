@@ -16,6 +16,14 @@ pub mod vault {
     use super::*;
 
     pub fn initialize(ctx: Context<Initialize>) -> Result<()> {
-        initialize::handler(ctx)
+        ctx.accounts.initialize(&ctx.bumps)
+    }
+
+    pub fn deposit(ctx: Context<Deposit>, amount: u64) -> Result<()> {
+        deposit::deposit(ctx, amount)
+    }
+
+    pub fn withdraw(ctx: Context<Withdraw>, amount: u64) -> Result<()> {
+        withdraw::withdraw(ctx, amount)
     }
 }

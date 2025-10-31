@@ -22,16 +22,13 @@ pub struct Initialize<'info> {
     pub system_program: Program<'info, System>,
 }
 
-pub fn handler(ctx: Context<Initialize>, init_bump: InitializeBumps) -> Result<()> {
-    let vault_state = &mut ctx.accounts.vault_state;
-    vault_state.amount = 0;
-    vault_state.authority = *ctx.accounts.user.key;
-    vault_state.state_bump = init_bump.vault;
-    vault_state.state_bump = init_bump.vault_state;
-
-    let vault = &mut 
-
-    msg!("Greetings from: {:?}", ctx.program_id);
-    Ok(())
+impl<'info> Initialize<'info> {
+    pub fn initialize(&mut self, bumps: &InitializeBumps) -> Result<()> {
+        self.vault_state.state_bump = bumps.vault_state;
+        self.vault_state.vault_bump = bumps.vault;
+        self.vault_state.authority = self.user.key();
+        self.vault_state.amount = 0;
+        Ok(())
+    }
 }
 //why would you do this

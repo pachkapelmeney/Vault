@@ -9,7 +9,7 @@ pub struct VaultState {
     pub state_bump: u8,
 
     pub authority: Pubkey,
-    pub amount: u32,
+    pub amount: u64,
     pub mint: Pubkey,
 }
 
